@@ -109,7 +109,7 @@ public class Console {
 
                 case 3:
                     System.out.println("Enter the id of the better you want to exclude: ");
-                    userService.getById(scanner.nextInt());
+                    userService.removeById(scanner.nextInt());
 
                 case 4:
                     return console.mainMenu(console);
@@ -197,6 +197,8 @@ public class Console {
                     System.out.println("Enter the amount of money to bet: ");
                     bet.setRate_value(scanner.nextInt());
 
+                    betService.add(bet);
+
                     System.out.println("You have successfully added a bet");
 
                     return console.betsSubmenu(console);
@@ -268,7 +270,6 @@ public class Console {
                     System.out.println("Game fund: "+ gameFundService.getSum());
                     return console.gameFundSubmenu(console);
                 case 2:
-                    System.out.println("user id + profit/loss: ");
                     System.out.println(gameFundService.getAll());
                     return console.gameFundSubmenu(console);
                 case 3:

@@ -1,6 +1,7 @@
 package entity;
 
 import java.math.BigInteger;
+import java.util.Objects;
 
 
 public class GameFund {
@@ -12,8 +13,7 @@ public class GameFund {
     private long found;
 
 
-
-    public GameFund(){
+    public GameFund() {
     }
 
     public int getId() {
@@ -46,5 +46,28 @@ public class GameFund {
 
     public void setFound(long found) {
         this.found = found;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        GameFund gameFund = (GameFund) o;
+        return id == gameFund.id && user_id == gameFund.user_id && plus_minus == gameFund.plus_minus && found == gameFund.found;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, user_id, plus_minus, found);
+    }
+
+    @Override
+    public String toString() {
+        return "GameFund{" +
+                "id=" + id +
+                ", user_id=" + user_id +
+                ", plus_minus=" + plus_minus +
+                ", found=" + found +
+                '}';
     }
 }

@@ -41,7 +41,7 @@ public class GameFundDaoImpl extends ConnectionManager implements GameFundDao {
     public List<GameFund> getAll() throws SQLException {
         PreparedStatement statement = null;
         List<GameFund> gameFundList = new ArrayList<>();
-        String sql = "SELECT user_id, plus_minus FROM \"GameFund\"";
+        String sql = "SELECT id, user_id, plus_minus FROM \"GameFund\"";
         try {
 
             statement = connection.prepareStatement(sql);
