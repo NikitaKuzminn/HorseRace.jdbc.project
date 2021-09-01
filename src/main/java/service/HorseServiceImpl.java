@@ -1,4 +1,5 @@
 package service;
+
 import dao.HorseDao;
 import dao.HorseDaoImpl;
 import entity.Horse;

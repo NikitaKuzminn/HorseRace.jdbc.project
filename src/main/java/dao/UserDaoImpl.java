@@ -1,6 +1,5 @@
 package dao;
 
-import entity.Bet;
 import util.ConnectionManager;
 import entity.User;
 
@@ -31,6 +30,7 @@ public class UserDaoImpl extends ConnectionManager implements UserDao {
             e.printStackTrace();
         } finally {
             if (preparedStatement != null) {
+
                 preparedStatement.close();
             }
         }
@@ -91,7 +91,9 @@ public class UserDaoImpl extends ConnectionManager implements UserDao {
 
         } finally {
             if (preparedStatement != null) {
+
                 preparedStatement.close();
+
             }
         }
         return user;
@@ -117,26 +119,29 @@ public class UserDaoImpl extends ConnectionManager implements UserDao {
             e.printStackTrace();
         } finally {
             if (preparedStatement != null) {
+
                 preparedStatement.close();
+
             }
         }
 
     }
 
     @Override
-    public void updateCash(int id, int cash) throws SQLException{
+    public void updateCash(int id, int cash) throws SQLException {
         Statement statement = null;
 
-        String sql = "UPDATE \"Users\" SET user_cash = " + cash + " WHERE user_id = "+ id;
+        String sql = "UPDATE \"Users\" SET user_cash = " + cash + " WHERE user_id = " + id;
 
         try {
             statement = connection.createStatement();
             statement.executeUpdate(sql);
-        } catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         } finally {
             if (statement != null) {
                 statement.close();
+
             }
         }
     }

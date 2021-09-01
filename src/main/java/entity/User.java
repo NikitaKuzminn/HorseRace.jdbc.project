@@ -68,11 +68,11 @@ public class User {
 
     @Override
     public String toString() {
-        return  "id=" + id +
+        return "id=" + id +
                 " " + first_name +
                 " " + last_name +
                 ", " + dob +
                 ", $" + user_cash +
-                "\n" ;
+                "\n";
     }
 }

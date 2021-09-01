@@ -13,8 +13,7 @@ public class Bet {
     private int user_id;
     private int horse;
     private int rate_value;
-    UserService userService = new UserServiceImpl();
-    HorseService horseService = new HorseServiceImpl();
+
 
     public Bet() {
     }
@@ -68,12 +67,21 @@ public class Bet {
     public String toString() {
         User user = null;
         Horse horse = null;
+        UserService userService = new UserServiceImpl();
+        HorseService horseService = new HorseServiceImpl();
+
         try {
             user = userService.getById(user_id);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        try {
             horse = horseService.getById(this.horse);
         } catch (SQLException e) {
-            System.err.println("Invalid ID");;
+            e.printStackTrace();
         }
+
+
 
         return "Bet: " +
                 "Number: " + id +

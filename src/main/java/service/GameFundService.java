@@ -9,8 +9,11 @@ import java.util.List;
 public interface GameFundService {
 
     void add(GameFund gameFund) throws SQLException;
+
     List<GameFund> getAll() throws SQLException;
+
     GameFund getById(int id) throws SQLException;
+
     int getSum() throws SQLException;
 
     //update

@@ -9,7 +9,9 @@ import java.util.List;
 public interface HorseRaceDao {
     //read
     void add(HorseRace horseRace) throws SQLException;
+
     List<HorseRace> getAll() throws SQLException;
+
     HorseRace getById(int Id) throws SQLException;
 
     //update

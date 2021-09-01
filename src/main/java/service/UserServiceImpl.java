@@ -12,34 +12,62 @@ public class UserServiceImpl implements UserService{
     UserDao userDao = new UserDaoImpl();
 
     @Override
-    public void add(User user) throws SQLException {
-        userDao.add(user);
+    public void add(User user) {
+        try {
+            userDao.add(user);
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
     }
 
     @Override
-    public List<User> getAll() throws SQLException {
-        return userDao.getAll();
+    public List<User> getAll() {
+        List<User> users = null;
+        try {
+            users = userDao.getAll();
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return users;
     }
 
     @Override
-    public User getById(int Id) throws SQLException {
-        return userDao.getById(Id);
+    public User getById(int Id) {
+        User user = null;
+       try {
+           user = userDao.getById(Id);
+       }catch (SQLException e){
+           e.printStackTrace();
+       }
+       return user;
     }
 
     @Override
-    public void update(User user) throws SQLException {
-        userDao.update(user);
+    public void update(User user) {
+        try {
+            userDao.update(user);
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
 
     }
 
     @Override
-    public void updateCash(int id, int cash) throws SQLException {
-        userDao.updateCash(id, cash);
+    public void updateCash(int id, int cash) {
+       try {
+           userDao.updateCash(id, cash);
+       }catch (SQLException e){
+           e.printStackTrace();
+       }
     }
 
 
     @Override
-    public void removeById(int id) throws SQLException {
-        userDao.removeById(id);
+    public void removeById(int id) {
+        try {
+            userDao.removeById(id);
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
     }
 }

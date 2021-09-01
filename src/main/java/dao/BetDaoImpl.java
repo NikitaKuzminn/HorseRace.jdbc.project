@@ -65,8 +65,10 @@ public class BetDaoImpl extends ConnectionManager implements BetDao {
             }
 
         }
+
         return betsList;
     }
+
 
     @Override
     public Bet getById(int id) throws SQLException {
@@ -93,6 +95,7 @@ public class BetDaoImpl extends ConnectionManager implements BetDao {
         } finally {
             if (preparedStatement != null) {
                 preparedStatement.close();
+
             }
         }
         return bet;
@@ -116,10 +119,10 @@ public class BetDaoImpl extends ConnectionManager implements BetDao {
             e.printStackTrace();
         } finally {
             if (preparedStatement != null) {
+
                 preparedStatement.close();
             }
         }
-
     }
 
     @Override
@@ -138,6 +141,7 @@ public class BetDaoImpl extends ConnectionManager implements BetDao {
             e.printStackTrace();
         } finally {
             if (preparedStatement != null) {
+
                 preparedStatement.close();
             }
         }
@@ -159,7 +163,9 @@ public class BetDaoImpl extends ConnectionManager implements BetDao {
             e.printStackTrace();
         } finally {
             if (preparedStatement != null) {
+
                 preparedStatement.close();
+
             }
         }
     }

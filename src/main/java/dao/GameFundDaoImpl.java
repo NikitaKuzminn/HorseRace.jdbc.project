@@ -1,6 +1,6 @@
 package dao;
 
-import entity.Bet;
+
 import entity.GameFund;
 import util.ConnectionManager;
 
@@ -16,7 +16,7 @@ public class GameFundDaoImpl extends ConnectionManager implements GameFundDao {
     Connection connection = getConnection();
 
     @Override
-    public void add(GameFund gameFund) throws SQLException {
+    public void add(GameFund gameFund) {
         PreparedStatement preparedStatement = null;
         String sql = "INSERT INTO \"GameFund\" (user_id, plus_minus) VALUES(?, ?)";
         try {
@@ -31,14 +31,18 @@ public class GameFundDaoImpl extends ConnectionManager implements GameFundDao {
             e.printStackTrace();
         } finally {
             if (preparedStatement != null) {
-                preparedStatement.close();
+                try {
+                    preparedStatement.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
             }
         }
 
     }
 
     @Override
-    public List<GameFund> getAll() throws SQLException {
+    public List<GameFund> getAll() {
         PreparedStatement statement = null;
         List<GameFund> gameFundList = new ArrayList<>();
         String sql = "SELECT id, user_id, plus_minus FROM \"GameFund\"";
@@ -59,14 +63,18 @@ public class GameFundDaoImpl extends ConnectionManager implements GameFundDao {
             e.printStackTrace();
         } finally {
             if (statement != null) {
-                statement.close();
+                try {
+                    statement.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
             }
         }
         return gameFundList;
     }
 
     @Override
-    public GameFund getById(int id) throws SQLException {
+    public GameFund getById(int id) {
         PreparedStatement preparedStatement = null;
 
         String sql = "SELECT id, user_id, plus_minus FROM \"GameFund\" WHERE id = ?";
@@ -88,14 +96,18 @@ public class GameFundDaoImpl extends ConnectionManager implements GameFundDao {
 
         } finally {
             if (preparedStatement != null) {
-                preparedStatement.close();
+                try {
+                    preparedStatement.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
             }
         }
         return gameFund;
     }
 
     @Override
-    public int getSum() throws SQLException {
+    public int getSum() {
         PreparedStatement preparedStatement = null;
 
         String sql = "SELECT SUM(plus_minus) as summ FROM \"GameFund\"";
@@ -110,14 +122,18 @@ public class GameFundDaoImpl extends ConnectionManager implements GameFundDao {
 
         } finally {
             if (preparedStatement != null) {
-                preparedStatement.close();
+                try {
+                    preparedStatement.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
             }
         }
         return sum;
     }
 
     @Override
-    public void update(GameFund gameFund) throws SQLException {
+    public void update(GameFund gameFund) {
         PreparedStatement preparedStatement = null;
 
         String sql = "UPDATE \"GameFund\" SET user_id = ?, plus_minus = ? WHERE id = ?";
@@ -133,13 +149,17 @@ public class GameFundDaoImpl extends ConnectionManager implements GameFundDao {
             e.printStackTrace();
         } finally {
             if (preparedStatement != null) {
-                preparedStatement.close();
+                try {
+                    preparedStatement.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
             }
         }
     }
 
     @Override
-    public void remove(GameFund gameFund) throws SQLException {
+    public void remove(GameFund gameFund) {
         PreparedStatement preparedStatement = null;
 
         String sql = "DELETE FROM \"GameFund\" WHERE id = ?";
@@ -154,7 +174,11 @@ public class GameFundDaoImpl extends ConnectionManager implements GameFundDao {
             e.printStackTrace();
         } finally {
             if (preparedStatement != null) {
-                preparedStatement.close();
+                try {
+                    preparedStatement.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
             }
         }
     }

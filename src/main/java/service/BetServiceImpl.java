@@ -22,7 +22,7 @@ public class BetServiceImpl implements BetService {
 
     @Override
     public List<Bet> getAll() throws SQLException {
-        return betDao.getAll();
+       return betDao.getAll();
     }
 
     @Override

@@ -32,6 +32,7 @@ public class HorseDaoImpl extends ConnectionManager implements HorseDao {
         } finally {
             if (preparedStatement != null) {
                 preparedStatement.close();
+
             }
         }
 
@@ -58,7 +59,9 @@ public class HorseDaoImpl extends ConnectionManager implements HorseDao {
             e.printStackTrace();
         } finally {
             if (statement != null) {
+
                 statement.close();
+
             }
         }
         return horseList;
@@ -86,6 +89,7 @@ public class HorseDaoImpl extends ConnectionManager implements HorseDao {
 
         } finally {
             if (preparedStatement != null) {
+
                 preparedStatement.close();
             }
         }
@@ -109,7 +113,9 @@ public class HorseDaoImpl extends ConnectionManager implements HorseDao {
             e.printStackTrace();
         } finally {
             if (preparedStatement != null) {
+
                 preparedStatement.close();
+
             }
         }
 
@@ -131,7 +137,9 @@ public class HorseDaoImpl extends ConnectionManager implements HorseDao {
             e.printStackTrace();
         } finally {
             if (preparedStatement != null) {
+
                 preparedStatement.close();
+
             }
         }
     }

@@ -16,7 +16,7 @@ public class HorseRaceDaoImpl extends ConnectionManager implements HorseRaceDao 
 
 
     @Override
-    public void add(HorseRace horseRace) throws SQLException {
+    public void add(HorseRace horseRace) {
         PreparedStatement preparedStatement = null;
         String sql = "INSERT INTO \"HorseRace\" (winner) VALUES(?)";
         try {
@@ -30,13 +30,17 @@ public class HorseRaceDaoImpl extends ConnectionManager implements HorseRaceDao 
             e.printStackTrace();
         } finally {
             if (preparedStatement != null) {
-                preparedStatement.close();
+                try {
+                    preparedStatement.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
             }
         }
     }
 
     @Override
-    public List<HorseRace> getAll() throws SQLException {
+    public List<HorseRace> getAll() {
         PreparedStatement statement = null;
         List<HorseRace> horseRaceList = new ArrayList<>();
         String sql = "SELECT id, winner FROM \"HorseRace\"";
@@ -57,14 +61,18 @@ public class HorseRaceDaoImpl extends ConnectionManager implements HorseRaceDao 
             e.printStackTrace();
         } finally {
             if (statement != null) {
-                statement.close();
+                try {
+                    statement.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
             }
         }
         return horseRaceList;
     }
 
     @Override
-    public HorseRace getById(int Id) throws SQLException {
+    public HorseRace getById(int Id) {
         PreparedStatement preparedStatement = null;
 
         String sql = "SELECT id, winner  FROM \"HorseRace\" WHERE id = ?";
@@ -85,7 +93,11 @@ public class HorseRaceDaoImpl extends ConnectionManager implements HorseRaceDao 
 
         } finally {
             if (preparedStatement != null) {
-                preparedStatement.close();
+                try {
+                    preparedStatement.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
             }
         }
         return horseRace;
@@ -93,7 +105,7 @@ public class HorseRaceDaoImpl extends ConnectionManager implements HorseRaceDao 
 
 
     @Override
-    public void update(HorseRace horseRace) throws SQLException {
+    public void update(HorseRace horseRace) {
         PreparedStatement preparedStatement = null;
 
         String sql = "UPDATE \"HorseRace\" SET winner = ? WHERE id = ?";
@@ -108,14 +120,18 @@ public class HorseRaceDaoImpl extends ConnectionManager implements HorseRaceDao 
             e.printStackTrace();
         } finally {
             if (preparedStatement != null) {
-                preparedStatement.close();
+                try {
+                    preparedStatement.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
             }
         }
 
     }
 
     @Override
-    public void remove(HorseRace horseRace) throws SQLException {
+    public void remove(HorseRace horseRace) {
 
         PreparedStatement preparedStatement = null;
 
@@ -131,7 +147,11 @@ public class HorseRaceDaoImpl extends ConnectionManager implements HorseRaceDao 
             e.printStackTrace();
         } finally {
             if (preparedStatement != null) {
-                preparedStatement.close();
+                try {
+                    preparedStatement.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
             }
         }
 

@@ -51,11 +51,11 @@ public class Horse {
 
     @Override
     public String toString() {
-        return "Horse{" +
-                "id=" + id +
-                ", horse_name='" + horse_name + '\'' +
+        return "Horse: " +
+                "number: " + id +
+                ", horse name='" + horse_name + '\'' +
                 ", coefficient=" + coefficient +
-                '}';
+                '\n';
     }
 
     public double getDistance() {
@@ -66,15 +66,15 @@ public class Horse {
         return this.speed;
     }
 
-    public void print(){
+    public void print() {
         StringBuilder sg = new StringBuilder("");
-        for (int i = 0; i < (int) getDistance(); i++){
-            sg.append( ".");
+        for (int i = 0; i < (int) getDistance(); i++) {
+            sg.append(".");
         }
         System.out.println(sg + this.horse_name);
     }
 
-    public void move(){
+    public void move() {
         distance += speed * Math.random();
     }
 

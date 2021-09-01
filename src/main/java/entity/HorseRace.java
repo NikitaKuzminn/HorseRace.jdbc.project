@@ -41,9 +41,8 @@ public class HorseRace {
 
     @Override
     public String toString() {
-        return "HorseRace{" +
-                "id=" + id +
-                ", winner='" + winner + '\'' +
-                '}';
+        return "Race: " + id +
+                ", Winner ='" + winner + '\'' +
+                '\n';
     }
 }

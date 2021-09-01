@@ -1,7 +1,6 @@
 package bl;
-import entity.Bet;
+
 import entity.Horse;
-import entity.HorseRace;
 import service.*;
 
 import java.sql.SQLException;
@@ -9,11 +8,8 @@ import java.util.Comparator;
 import java.util.List;
 
 public class Hippodrome {
-    public static Hippodrome game;
-    private static HorseService horseService = new HorseServiceImpl();
+    private static final HorseService horseService = new HorseServiceImpl();
     private static List<Horse> horses;
-    private static HorseRaceService horseRaceService = new HorseRaceServiceImpl();
-    private static BetService betService = new BetServiceImpl();
 
     static {
         try {
@@ -24,20 +20,11 @@ public class Hippodrome {
     }
 
 
-    public List<Horse> getHorses() {
-        return horses;
-    }
-
     public Hippodrome() {
 
     }
 
-    public Hippodrome(List<Horse> horses) {
-        this.horses = horses;
-
-    }
-
-    public void run() throws InterruptedException, SQLException {
+    public void run() throws InterruptedException {
 
         for (int i = 0; i < 20; i++) {
             move();
@@ -67,17 +54,8 @@ public class Hippodrome {
                 .get();
     }
 
-    public void printWinner() throws SQLException {
-       System.out.println("Winner is "+getWinner().getHorse_name()+"!");
+    public void printWinner() {
+        System.out.println("Winner is " + getWinner().getHorse_name() + "!");
 
-
-
-    }
-
-
-    public static void main(String[] args) throws InterruptedException, SQLException {
-        game = new Hippodrome(horses);
-        game.run();
-        game.printWinner();
     }
 }

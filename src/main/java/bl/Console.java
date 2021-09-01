@@ -22,7 +22,10 @@ public class Console {
     HorseRaceService horseRaceService = new HorseRaceServiceImpl();
     Scanner scanner = new Scanner(System.in);
 
-    public static void main(String[] args) throws SQLException, ParseException, InterruptedException {
+    public Console() throws SQLException {
+    }
+
+    public static void run () throws SQLException, ParseException, InterruptedException {
         Console console = new Console();
         console = console.mainMenu(console);
         System.out.println("Application has been shut down");
@@ -236,7 +239,7 @@ public class Console {
             switch (selection) {
                 case 1:
                     List<Bet> bets = betService.getAll();
-                    if(!bets.isEmpty()) {
+                    if (!bets.isEmpty()) {
                         game.run();
                         game.printWinner();
                         bookmaker.winner();
@@ -274,7 +277,7 @@ public class Console {
 
             switch (selection) {
                 case 1:
-                    System.out.println("Game fund: "+ gameFundService.getSum());
+                    System.out.println("Game fund: " + gameFundService.getSum());
                     return console.gameFundSubmenu(console);
                 case 2:
                     System.out.println(gameFundService.getAll());

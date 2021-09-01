@@ -1,6 +1,5 @@
 package entity;
 
-import java.math.BigInteger;
 import java.util.Objects;
 
 
@@ -9,7 +8,6 @@ public class GameFund {
     private int id;
     private int user_id;
     private int plus_minus;
-
 
 
     public GameFund() {
@@ -54,11 +52,11 @@ public class GameFund {
 
     @Override
     public String toString() {
-        return "GameFund{" +
-                "id=" + id +
-                ", user_id=" + user_id +
+        return "GameFund(user, money): " +
+                "id= " + id +
+                ", user_id= " + user_id +
                 ", plus_minus=" + plus_minus +
-                '}';
+                '\n';
 
     }
 }
