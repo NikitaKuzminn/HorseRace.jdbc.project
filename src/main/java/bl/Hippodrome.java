@@ -1,10 +1,8 @@
 package bl;
+import entity.Bet;
 import entity.Horse;
 import entity.HorseRace;
-import service.HorseRaceService;
-import service.HorseRaceServiceImpl;
-import service.HorseService;
-import service.HorseServiceImpl;
+import service.*;
 
 import java.sql.SQLException;
 import java.util.Comparator;
@@ -15,6 +13,7 @@ public class Hippodrome {
     private static HorseService horseService = new HorseServiceImpl();
     private static List<Horse> horses;
     private static HorseRaceService horseRaceService = new HorseRaceServiceImpl();
+    private static BetService betService = new BetServiceImpl();
 
     static {
         try {
@@ -38,11 +37,12 @@ public class Hippodrome {
 
     }
 
-    public void run() throws InterruptedException {
+    public void run() throws InterruptedException, SQLException {
+
         for (int i = 0; i < 20; i++) {
             move();
             print();
-            Thread.sleep(1000);
+            Thread.sleep(500);
         }
     }
 

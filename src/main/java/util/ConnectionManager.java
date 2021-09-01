@@ -26,7 +26,6 @@ public class ConnectionManager {
         Class<Driver> driverClass = Driver.class;
         Connection connection = null;
         connection = ConnectionManager.open();
-        System.out.println("Connection OK");
         return connection;
     }
 }

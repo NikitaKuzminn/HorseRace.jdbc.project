@@ -8,6 +8,7 @@ import service.*;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.text.ParseException;
+import java.util.List;
 import java.util.Scanner;
 
 public class Console {
@@ -98,7 +99,7 @@ public class Console {
                     int month = scanner.nextInt();
                     System.out.print("Day: ");
                     int day = scanner.nextInt();
-                    Date date = new Date(year, month, day);
+                    Date date = new Date(year - 1901, month, day);
                     user.setDob(date);
                     System.out.print("Enter the amount of the initial contribution: ");
                     user.setUser_cash(scanner.nextInt());
@@ -110,6 +111,7 @@ public class Console {
                 case 3:
                     System.out.println("Enter the id of the better you want to exclude: ");
                     userService.removeById(scanner.nextInt());
+                    return console.bettersSubmenu(console);
 
                 case 4:
                     return console.mainMenu(console);
@@ -233,9 +235,14 @@ public class Console {
 
             switch (selection) {
                 case 1:
-                    game.run();
-                    game.printWinner();
-                    bookmaker.winner();
+                    List<Bet> bets = betService.getAll();
+                    if(!bets.isEmpty()) {
+                        game.run();
+                        game.printWinner();
+                        bookmaker.winner();
+                    } else {
+                        System.out.println("No bets have been placed");
+                    }
 
                     return console.raceSubmenu(console);
                 case 2:

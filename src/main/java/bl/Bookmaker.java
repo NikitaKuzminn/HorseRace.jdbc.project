@@ -61,41 +61,37 @@ public class Bookmaker {
 
     public void winner() throws SQLException {
 
-        bets = betService.getAll();
+        for (Bet bet : bets) {
 
-        if (bets.isEmpty()) {
-            System.out.println("No bets have been placed ");
-        } else {
-            for (Bet bet : bets) {
+            int userId = bet.getUser();
+            int horseId = bet.getHorse();
 
-                int userId = bet.getUser();
-                int horseId = bet.getHorse();
+            Horse horse = horseService.getById(horseId);
 
-                Horse horse = horseService.getById(horseId);
+            if (horse.equals(game.getWinner())) {
+                GameFund gameFund = new GameFund();
+                User user = userService.getById(userId);
+                gameFund.setUser_id(userId);
 
-                if (horse.equals(game.getWinner())) {
-                    GameFund gameFund = new GameFund();
-                    User user = userService.getById(userId);
-                    gameFund.setUser_id(userId);
+                int moneyWon = (int) (bet.getRate_value() * horse.getCoefficient());
+                int freshCash = moneyWon + user.getUser_cash() + bet.getRate_value();
+                gameFund.setPlus_minus(-moneyWon);
 
-                    int moneyWon = (int) (bet.getRate_value() * horse.getCoefficient());
-                    int freshCash = moneyWon + user.getUser_cash() + bet.getRate_value();
-                    gameFund.setPlus_minus(-moneyWon);
+                userService.updateCash(userId, freshCash);
+                gameFundService.add(gameFund);
 
-                    userService.updateCash(userId, freshCash);
-                    gameFundService.add(gameFund);
+                System.out.println(user.getFirst_name() + " " + user.getLast_name() + " won: $" + moneyWon);
 
-                    System.out.println(user.getFirst_name() + " " + user.getLast_name() + " won: " + moneyWon);
-
-                }
             }
-            HorseRace horseRace = new HorseRace();
-            horseRace.setWinner(game.getWinner().getHorse_name());
-            horseRaceService.add(horseRace);
+        }
 
-            for (Bet bet : bets) {
-                betService.remove(bet);
-            }
+        HorseRace horseRace = new HorseRace();
+        horseRace.setWinner(game.getWinner().getHorse_name());
+        horseRaceService.add(horseRace);
+
+        for (Bet bet : bets) {
+            betService.remove(bet);
         }
     }
 }
+

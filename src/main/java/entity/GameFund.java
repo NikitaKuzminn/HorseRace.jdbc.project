@@ -10,7 +10,6 @@ public class GameFund {
     private int user_id;
     private int plus_minus;
 
-    private long found;
 
 
     public GameFund() {
@@ -40,25 +39,17 @@ public class GameFund {
         this.plus_minus = plus_minus;
     }
 
-    public long getFound() {
-        return found;
-    }
-
-    public void setFound(long found) {
-        this.found = found;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         GameFund gameFund = (GameFund) o;
-        return id == gameFund.id && user_id == gameFund.user_id && plus_minus == gameFund.plus_minus && found == gameFund.found;
+        return id == gameFund.id && user_id == gameFund.user_id && plus_minus == gameFund.plus_minus;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, user_id, plus_minus, found);
+        return Objects.hash(id, user_id, plus_minus);
     }
 
     @Override
@@ -67,7 +58,7 @@ public class GameFund {
                 "id=" + id +
                 ", user_id=" + user_id +
                 ", plus_minus=" + plus_minus +
-                ", found=" + found +
                 '}';
+
     }
 }

@@ -1,5 +1,11 @@
 package entity;
 
+import service.HorseService;
+import service.HorseServiceImpl;
+import service.UserService;
+import service.UserServiceImpl;
+
+import java.sql.SQLException;
 import java.util.Objects;
 
 public class Bet {
@@ -7,6 +13,8 @@ public class Bet {
     private int user_id;
     private int horse;
     private int rate_value;
+    UserService userService = new UserServiceImpl();
+    HorseService horseService = new HorseServiceImpl();
 
     public Bet() {
     }
@@ -58,11 +66,21 @@ public class Bet {
 
     @Override
     public String toString() {
-        return "Bet{" +
-                "id=" + id +
-                ", user=" + user_id +
-                ", horse=" + horse +
-                ", rate_value=" + rate_value +
-                '}';
+        User user = null;
+        Horse horse = null;
+        try {
+            user = userService.getById(user_id);
+            horse = horseService.getById(this.horse);
+        } catch (SQLException e) {
+            System.err.println("Invalid ID");;
+        }
+
+        return "Bet: " +
+                "Number: " + id +
+                ", Better = " + user.getFirst_name() +
+                " " + user.getLast_name() +
+                ", Horse=" + horse.getHorse_name() +
+                ", Rate_value = " + rate_value +
+                '\n';
     }
 }
