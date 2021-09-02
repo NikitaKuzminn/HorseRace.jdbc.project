@@ -4,6 +4,8 @@ import entity.Bet;
 import entity.Horse;
 import entity.User;
 import service.*;
+import validators.HorseValidator;
+import validators.UserValidator;
 
 import java.sql.Date;
 import java.sql.SQLException;
@@ -20,12 +22,16 @@ public class Console {
     UserService userService = new UserServiceImpl();
     GameFundService gameFundService = new GameFundServiceImpl();
     HorseRaceService horseRaceService = new HorseRaceServiceImpl();
+    HorseValidator horseValidator = new HorseValidator();
+    UserValidator userValidator = new UserValidator();
+    List<User> users = null;
+    List<Horse> horses = null;
     Scanner scanner = new Scanner(System.in);
 
     public Console() throws SQLException {
     }
 
-    public static void run () throws SQLException, ParseException, InterruptedException {
+    public static void run() throws SQLException, ParseException, InterruptedException {
         Console console = new Console();
         console = console.mainMenu(console);
         System.out.println("Application has been shut down");
@@ -106,6 +112,12 @@ public class Console {
                     user.setDob(date);
                     System.out.print("Enter the amount of the initial contribution: ");
                     user.setUser_cash(scanner.nextInt());
+                    try {
+                        userValidator.validate(user);
+                    } catch (UnsupportedOperationException e) {
+                        System.err.println(e.getMessage());
+                        return console.bettersSubmenu(console);
+                    }
                     userService.add(user);
 
                     System.out.println("You have successfully added a better");
@@ -150,6 +162,12 @@ public class Console {
                     horse.setHorse_name(scanner.next());
                     System.out.print("Enter the coefficient (1,5 is recommended for new horses): ");
                     horse.setCoefficient(scanner.nextDouble());
+                    try{
+                        horseValidator.validate(horse);
+                    }catch (UnsupportedOperationException e){
+                        System.err.println(e.getMessage());
+                        return console.horsesSubmenu(console);
+                    }
                     horseService.add(horse);
                     System.out.println("You have successfully added a horse");
                     return console.horsesSubmenu(console);
@@ -196,9 +214,38 @@ public class Console {
                 case 3:
                     Bet bet = new Bet();
                     System.out.println("Enter the id of the better :");
-                    bet.setUser(scanner.nextInt());
+                    int userId = scanner.nextInt();
+                    int realUserId = 0;
+                    users = userService.getAll();
+                    for (User user : users) {
+                        if (userId == user.getId()) {
+                            realUserId = user.getId();
+                            break;
+                        }
+                    }
+                    if (realUserId == 0) {
+                        System.err.println("Invalid better id");
+                        return console.betsSubmenu(console);
+                    }
+
+                    bet.setUser(realUserId);
+
                     System.out.println("Enter the id of the horse: ");
-                    bet.setHorse(scanner.nextInt());
+                    int horseId = scanner.nextInt();
+                    int realHorseId = 0;
+                    horses = horseService.getAll();
+                    for (Horse horse : horses) {
+                        if (horseId == horse.getId()) {
+                            realHorseId = horse.getId();
+                            break;
+                        }
+                    }
+                    if (realHorseId == 0) {
+                        System.err.println("Invalid horse number");
+                        return console.betsSubmenu(console);
+                    }
+                    bet.setHorse(realHorseId);
+
                     System.out.println("Enter the amount of money to bet: ");
                     bet.setRate_value(scanner.nextInt());
 
