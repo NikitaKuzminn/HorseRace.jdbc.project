@@ -108,7 +108,8 @@ public class Console {
                     int month = scanner.nextInt();
                     System.out.print("Day: ");
                     int day = scanner.nextInt();
-                    Date date = new Date(year - 1901, month, day);
+                    String dateString = year + "-" + month + "-" + day;
+                    Date date = Date.valueOf(dateString);
                     user.setDob(date);
                     System.out.print("Enter the amount of the initial contribution: ");
                     user.setUser_cash(scanner.nextInt());

@@ -1,4 +1,3 @@
-import org.checkerframework.checker.units.qual.Current;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import entity.User;
@@ -20,7 +19,6 @@ public class UserValidatorTest {
         user = new User();
         user.setFirst_name("Nikita");
         user.setLast_name("Kuzmin");
-        user.setDob(new Date(1997-12-10));
         user.setUser_cash(5000);
     }
 
@@ -33,8 +31,8 @@ public class UserValidatorTest {
 
     @Test
     public void lastNameValidateTest(){
-        user.setFirst_name(null);
-        assertThrows(UnsupportedOperationException.class, () -> userValidator.validate(user)
+        user.setFirst_name("");
+        assertThrows(NullPointerException.class, () -> userValidator.validate(user)
         );
     }
 
@@ -44,5 +42,4 @@ public class UserValidatorTest {
         assertThrows(UnsupportedOperationException.class, () -> userValidator.validate(user)
         );
     }
-
 }

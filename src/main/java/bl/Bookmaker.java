@@ -45,7 +45,7 @@ public class Bookmaker {
 
                 GameFund gameFund = new GameFund();
                 int cash = users.get(i).getUser_cash();
-                if (cash <= 0) {
+                if (cash == 0) {
                     userService.removeById(users.get(i).getId());
                     System.out.println("Better" + users.get(i).getFirst_name()
                             + users.get(i).getLast_name() + " was expelled due to bankruptcy");
