@@ -52,10 +52,10 @@ public class GameFund {
 
     @Override
     public String toString() {
-        return "GameFund(user, money): " +
-                "id= " + id +
-                ", user_id= " + user_id +
-                ", plus_minus=" + plus_minus +
+        return "GameFund(better, money): " +
+                "id = " + id +
+                ", user_id = " + user_id +
+                ", plus_minus = " + plus_minus +
                 '\n';
 
     }

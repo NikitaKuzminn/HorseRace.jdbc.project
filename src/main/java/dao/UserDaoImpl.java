@@ -40,7 +40,7 @@ public class UserDaoImpl extends ConnectionManager implements UserDao {
     public List<User> getAll() throws SQLException {
         PreparedStatement statement = null;
         List<User> usersList = new ArrayList<>();
-        String sql = "SELECT user_id, first_name, last_name, user_dob, user_cash FROM \"Users\"";
+        String sql = "SELECT user_id, first_name, last_name, user_dob, user_cash FROM \"Users\" ORDER BY user_id";
         try {
 
             statement = connection.prepareStatement(sql);

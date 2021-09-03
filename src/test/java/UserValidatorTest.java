@@ -32,13 +32,15 @@ public class UserValidatorTest {
     @Test
     public void lastNameValidateTest(){
         user.setFirst_name("");
-        assertThrows(NullPointerException.class, () -> userValidator.validate(user)
+        assertThrows(UnsupportedOperationException.class, () -> userValidator.validate(user)
         );
     }
 
     @Test
     public void dateOfBirthValidateTest(){
-        user.setDob(new Date(1,1,1));
+        String s = "2009-12-01";
+        Date date = Date.valueOf(s);
+        user.setDob(date);
         assertThrows(UnsupportedOperationException.class, () -> userValidator.validate(user)
         );
     }

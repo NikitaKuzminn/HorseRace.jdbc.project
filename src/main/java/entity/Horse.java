@@ -52,9 +52,9 @@ public class Horse {
     @Override
     public String toString() {
         return "Horse: " +
-                "number: " + id +
-                ", horse name='" + horse_name + '\'' +
-                ", coefficient=" + coefficient +
+                "number = " + id +
+                ", horse name = '" + horse_name + '\'' +
+                ", coefficient = " + coefficient +
                 '\n';
     }
 

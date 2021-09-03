@@ -84,10 +84,10 @@ public class Bet {
 
 
         return "Bet: " +
-                "Number: " + id +
+                "Number = " + id +
                 ", Better = " + user.getFirst_name() +
                 " " + user.getLast_name() +
-                ", Horse=" + horse.getHorse_name() +
+                ", Horse = " + horse.getHorse_name() +
                 ", Rate_value = " + rate_value +
                 '\n';
     }
